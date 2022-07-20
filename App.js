@@ -1,26 +1,44 @@
 import { useState } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, Button } from 'react-native';
 import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
 
 export default function App() {
+  const [modalIsVisible, setModalIsVisible] = useState(false);
   const [goals, setGoals] = useState([]);
 
+  function startAddGoalHandler() {
+    setModalIsVisible(true);
+  }
+
+  function endGoalHandler() {
+    setModalIsVisible(false);
+  }
 
   function addGoalHandleer(enteredGoalText) {
     setGoals(currentGoals => [...currentGoals, { text: enteredGoalText, id: Math.random().toString() }]);
+    setModalIsVisible(false);
   }
 
   function removeGoalHandler(id) {
-    setGoals(oldStates=>{
-      return oldStates.filter((x)=> x.id !== id)
+    setGoals(oldStates => {
+      return oldStates.filter((x) => x.id !== id)
     });
+
   }
 
   return (
     <View style={styles.appContainer}>
+      <Button
+        title='Add New Goal'
+        color="#5e0acc"
+        onPress={startAddGoalHandler}
+      />
+
       <GoalInput
+        visible={modalIsVisible}
         onAddGoal={addGoalHandleer}
+        onCancel={endGoalHandler}
       />
       <View style={styles.goalsContainer}>
         <FlatList
