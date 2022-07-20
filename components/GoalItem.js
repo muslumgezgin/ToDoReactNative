@@ -1,9 +1,6 @@
 import { Text, View, StyleSheet, Pressable } from "react-native";
 
-
 function GoalItem(props) {
-
-
     return (
         <View style={styles.goalItem} >
             <Pressable

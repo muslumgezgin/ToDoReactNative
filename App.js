@@ -5,6 +5,7 @@ import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
 
 export default function App() {
+
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [goals, setGoals] = useState([]);
 
@@ -73,6 +74,4 @@ const styles = StyleSheet.create({
   goalsContainer: {
     flex: 5
   },
-
-
 });
